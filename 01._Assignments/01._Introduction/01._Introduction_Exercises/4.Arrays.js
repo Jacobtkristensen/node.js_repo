@@ -6,7 +6,8 @@
 const letters = ["a", "b", "c"];
 // show b in the console 
 
-
+const letter = letters[1]
+console.log(letter)
 // --------------------------------------
 // Exercise 2 - Array Positioning
 

@@ -42,7 +42,9 @@ console.log(sum3);
 const letters = "abc";
 // Get me the character "c"
 let char = letters[2];
+let char2 = letters.substring(2, 3);
 console.log(char);
+console.log(char2);
 
 
 
