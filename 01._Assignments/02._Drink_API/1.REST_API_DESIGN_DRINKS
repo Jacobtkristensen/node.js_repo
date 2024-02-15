@@ -1,0 +1,10 @@
+# REST API Design for drinks
+
+| HTTP Methods | Endpoints        | Description                            |
+|--------------|------------------|----------------------------------------|
+| GET          | `/drinks`        | get all drinks                         |
+| GET          | `/drinks/alcohol`| get all drinks with alcohol            |
+| GET          | `/drinks/non-alcohol`| get all drinks without alcohol            |
+| GET          | `/drinks/<id>`   | get a drink by `<id>`                  |
+
+### order of the GET methods in the express app are strict, otherwise `drinks/<id>` could interpret /alcohol or /non-alcohol as an id 
