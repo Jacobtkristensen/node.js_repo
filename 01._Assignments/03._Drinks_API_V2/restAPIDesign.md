@@ -6,3 +6,7 @@
 | PUT         | /drinks/:id      |
 | PATCH       | /drinks/:id      |
 | DELETE      | /drinks/:id      |
+
+
+
+### Missing Patch
