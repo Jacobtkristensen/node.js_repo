@@ -1,7 +1,12 @@
-// const express = require("express")
-// const app = express();
+const express = require("express");
+const app = express();
 
-const app = require("express")();
+// const app = require("express")();
+
+
+//nødvendig for POST, PUT, PATCH, DELETE
+app.use(express.json());
+
 
 //route
 //endpoint
@@ -55,6 +60,40 @@ app.get("/wallet/:withdrawalAmount", (req, res) => {
 app.get("/page", (req, res) => {
   res.send("<h1>Welcome to my page</h1>");
 });
+
+///saySomethingNiceAboutMe/hello?handsome=very&tall=indeed&cool=always
+//query parameters
+
+// %20 er mellemrum i URL
+app.get("/saySomethingNiceAboutMe/:greeting", (req, res) => {
+  console.log(req.params.greeting);
+  console.log(req.query);
+
+  //task: if the client defines handsome as very then return "thanks cool cat"
+  //task: other say "ain't no thang"
+  if (req.query.handsome === "very") {
+    return res.send({ data: "thanks cool cat" });
+  }
+  return res.send({ data: "ain't no thang" });
+});
+
+
+app.post("/postman", (req, res) => {
+  console.log(req.body);
+  res.send(req.body);
+});
+
+
+// undefined, null, false, ""
+const falsyValues = undefined; 
+
+if(falsyValues) {
+    console.log("Not Falsy");
+} else {
+    console.log("Definitely Falsy");
+}
+
+
 
 //http: 80
 //https: 443
