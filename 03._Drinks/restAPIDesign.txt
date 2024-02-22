@@ -1,4 +1,4 @@
-HTTP Method
+HTTP Method Endpoint
 
 GET         /drinks
 GET         /drinks/:id
