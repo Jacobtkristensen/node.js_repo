@@ -1,0 +1,27 @@
+{
+  "name": "date",
+  "version": "0.0.1",
+  "description": "WOrking with dates in Javascript",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jacobtkristensen/node.js_repo.git"
+  },
+  "keywords": [
+    "date",
+    "Javascript",
+    "Express"
+  ],
+  "author": "Jacobtkristensen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jacobtkristensen/node.js_repo/issues"
+  },
+  "homepage": "https://github.com/Jacobtkristensen/node.js_repo#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

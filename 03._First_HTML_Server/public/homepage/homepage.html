@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="./homepage.css"> -->
+    <style>
+
+    </style>
     <title>Homepage</title>
 </head>
+
 <body>
     <h1>Does this work?</h1>
+
+    <div id="celebration-box">
+        <h3>Yes it does!</h3>
+    </div>
+    <input id="input-field" placeholder="Your name here" />
+    <button onclick="showGreeting()">Get greeting</button>
+    
+    <h2 id="greeting-text"></h2>
+
+    <a href="/publicsquare">press me</a>
+
+    <script>
+        const inputField = document.getElementById("input-field");
+        const greetingH2 = document.getElementById("greeting-text");
+        
+        function showGreeting() {
+            const name = inputField.value;
+            fetch("/greeting?name=" + name)
+                .then((response) => response.json())
+                .then((result) => {
+                    greetingH2.textContent = result.data;
+                    console.log(result.data)
+                });
+        }
+
+            
+       
+        
+    </script>
+    <!-- <script src="./homepage.js"></script> -->
 </body>
+
 </html>
