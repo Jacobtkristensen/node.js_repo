@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time to deploy</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+
+      #stopwatch {
+        margin-top: 100px;
+      }
+
+      #time {
+        font-size: 50px;
+        margin-bottom: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 20px;
+        margin: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="stopwatch">
+      <div id="time">00:00:00</div>
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+      <button id="reset">Reset</button>
+    </div>
+
+    <script>
+      let startTime;
+      let updatedTime;
+      let difference;
+      let timeInterval;
+      let ticking = false;
+      let elapsedTime = 0;
+
+      function startTimer() {
+        if (!ticking) {
+          startTime = new Date().getTime() - elapsedTime;
+          timeInterval = setInterval(showTime, 1);
+          ticking = true;
+        }
+      }
+
+      function stopTimer() {
+        if (ticking) {
+          clearInterval(timeInterval);
+          elapsedTime = new Date().getTime() - startTime;
+          ticking = false;
+        }
+      }
+
+      function resetTimer() {
+        clearInterval(timeInterval);
+        ticking = false;
+        document.getElementById("time").innerHTML = "00:00:00";
+      }
+
+      function showTime() {
+        updatedTime = new Date().getTime();
+        difference = updatedTime - startTime;
+        let totalSeconds = Math.floor(difference / 1000);
+        let totalMinutes = Math.floor(totalSeconds / 60);
+        let hours = Math.floor(totalMinutes / 60);
+
+
+        minutes = totalMinutes % 60;
+        seconds = totalSeconds % 60;
+
+        //sikrer at der altid er to cifre i timeren
+        let formattedHours = hours.toString().padStart(2, "0");
+        let formattedMinutes = minutes.toString().padStart(2, "0");
+        let formattedSeconds = seconds.toString().padStart(2, "0");
+
+        document.getElementById("time").innerHTML = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+      }
+
+      function changeBackgroundColor() {
+        let timeOfDay = new Date().getHours();
+        let color;
+
+        if (timeOfDay >= 6 && timeOfDay < 12) {
+          color = "#FFF3AA";
+        } else if (timeOfDay >= 12 && timeOfDay < 18) {
+          color = "#FFD700";
+        } else if (timeOfDay >= 18 && timeOfDay < 24) {
+          color = "#48374A";
+        } else {
+          color = "#171D30";
+        }
+
+        document.body.style.backgroundColor = color;
+      }
+
+      document.getElementById("start").addEventListener("click", startTimer);
+      document.getElementById("stop").addEventListener("click", stopTimer);
+      document.getElementById("reset").addEventListener("click", resetTimer);
+
+      changeBackgroundColor();
+    </script>
+  </body>
+</html>
