@@ -205,10 +205,10 @@
         let miliseconds = Math.floor(difference % 1000);
 
         //sikrer at der altid er to cifre i timeren
-        let formattedHours = hours.toString().padStart(2, "0");
-        let formattedMinutes = minutes.toString().padStart(2, "0");
-        let formattedSeconds = seconds.toString().padStart(2, "0");
-        let formattedMiliseconds = miliseconds.toString().padStart(3, "0");
+        const formattedHours = hours.toString().padStart(2, "0");
+        const formattedMinutes = minutes.toString().padStart(2, "0");
+        const formattedSeconds = seconds.toString().padStart(2, "0");
+        const formattedMiliseconds = miliseconds.toString().padStart(3, "0");
 
         document.getElementById(
           "time"
