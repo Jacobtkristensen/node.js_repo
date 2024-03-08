@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time to deploy</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+      * {
+  
+        font-family: "Roboto", sans-serif;
+      }
+
+      .color-preview-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 10px;
+        gap: 5px;
+      }
+
+      .color-preview-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .time-of-day {
+        color: white;
+        font-size: 1.2rem;
+        text-align: right;
+      }
+
+      .color-preview {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #000;
+      }
+
+      .morning {
+        background-color: #fff3aa;
+      }
+
+      .afternoon {
+        background-color: #ffd700;
+      }
+
+      .evening {
+        background-color: #48374a;
+      }
+
+      .night {
+        background-color: #171d30;
+      }
+
+      .stopwatch-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 75vh;
+        margin: 0;
+        padding: 0;
+      }
+
+      #stopwatch {
+        font-weight: 600;
+      }
+
+      #time {
+        font-size: 8rem;
+        margin-bottom: 20px;
+      }
+
+      #buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+      }
+
+      #start,
+      #stop,
+      #reset {
+        padding: 10px 20px;
+        font-size: 2rem;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+      }
+
+      #start {
+        background-color: #4caf50;
+      }
+
+      #stop {
+        background-color: #f44336;
+      }
+
+      #reset {
+        background-color: #008cba;
+      }
+
+      button:hover {
+        transform: scale(1.1);
+      }
+
+      .fun-fact-container {
+        border: 2px solid #ffff;
+        padding: 10px;
+        margin-top: 20px;
+        text-align: center;
+        width: auto;
+      }
+
+      .fun-fact {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="color-preview-container">
+      <div class="color-preview-item">
+        <span class="time-of-day">Morning (06-12)</span>
+        <div class="color-preview morning"></div>
+      </div>
+      <div class="color-preview-item">
+        <span class="time-of-day">Afternoon (12-18)</span>
+        <div class="color-preview afternoon"></div>
+      </div>
+      <div class="color-preview-item">
+        <span class="time-of-day">Afternoon (18-24)</span>
+        <div class="color-preview evening"></div>
+      </div>
+      <div class="color-preview-item">
+        <span class="time-of-day">Night (24-06)</span>
+        <div class="color-preview night"></div>
+      </div>
+    </div>
+
+    <div class="stopwatch-container">
+      <div id="stopwatch">
+        <div id="time">00:00:00:000</div>
+        <div id="buttons">
+          <button id="start">Start</button>
+          <button id="stop">Stop</button>
+          <button id="reset">Reset</button>
+        </div>
+      </div>
+    </div>
+    <div class="fun-fact-container">
+      <div class="fun-fact"></div>
+    </div>
+    <script>
+      let startTime;
+      let updatedTime;
+      let difference;
+      let timeInterval;
+      let ticking = false;
+      let elapsedTime = 0;
+
+      function startTimer() {
+        if (!ticking) {
+          startTime = new Date().getTime() - elapsedTime;
+          timeInterval = setInterval(showTime, 1);
+          ticking = true;
+        }
+      }
+
+      function stopTimer() {
+        if (ticking) {
+          clearInterval(timeInterval);
+          elapsedTime = new Date().getTime() - startTime;
+          ticking = false;
+        }
+      }
+
+      function resetTimer() {
+        clearInterval(timeInterval);
+        ticking = false;
+        elapsedTime = 0;
+        document.getElementById("time").innerHTML = "00:00:00:000";
+      }
+
+      function showTime() {
+        updatedTime = new Date().getTime();
+        difference = updatedTime - startTime;
+        let totalSeconds = Math.floor(difference / 1000);
+        let totalMinutes = Math.floor(totalSeconds / 60);
+        let hours = Math.floor(totalMinutes / 60);
+
+        minutes = totalMinutes % 60;
+        seconds = totalSeconds % 60;
+
+        let miliseconds = Math.floor(difference % 1000);
+
+        //sikrer at der altid er to cifre i timeren
+        const formattedHours = hours.toString().padStart(2, "0");
+        const formattedMinutes = minutes.toString().padStart(2, "0");
+        const formattedSeconds = seconds.toString().padStart(2, "0");
+        const formattedMiliseconds = miliseconds.toString().padStart(3, "0");
+
+        document.getElementById(
+          "time"
+        ).innerHTML = `${formattedHours}:${formattedMinutes}:${formattedSeconds}:${formattedMiliseconds}`;
+      }
+      function changeBackgroundColor() {
+        let timeOfDay = new Date().getHours();
+        let backgroundColor, fontColor;
+
+        if (timeOfDay >= 6 && timeOfDay < 12) {
+          backgroundColor = "#FFF3AA";
+          fontColor = "#000";
+        } else if (timeOfDay >= 12 && timeOfDay < 18) {
+          backgroundColor = "#FFD700";
+          fontColor = "#000";
+        } else if (timeOfDay >= 18 && timeOfDay < 24) {
+          backgroundColor = "#48374A";
+          fontColor = "#FFF";
+        } else {
+          backgroundColor = "#171D30";
+          fontColor = "#FFF";
+        }
+
+        document.body.style.backgroundColor = backgroundColor;
+        document.body.style.color = fontColor;
+        document.querySelectorAll(".time-of-day, .fun-fact, #start, #stop, #reset").forEach((element) => {
+          element.style.color = fontColor;
+        });
+      }
+
+      document.getElementById("start").addEventListener("click", startTimer);
+      document.getElementById("stop").addEventListener("click", stopTimer);
+      document.getElementById("reset").addEventListener("click", resetTimer);
+
+      const funFacts = [
+        { event: "Fastest time to solve a Rubik's Cube", holder: "Yusheng Du", record: "3.47", unit: "seconds" },
+        { event: "Fastest 100m sprint", holder: "Usain Bolt", record: "9.58", unit: "seconds" },
+        { event: "Fastest time to run 200 meters backwards", holder: "Daisuke Fukuda", record: "30.00", unit: "seconds" },
+        { event: "Fastest time to type the alphabet on a touchscreen", holder: "Felix Zemdegs", record: "3.93", unit: "seconds" },
+        { event: "Fastest 110m hurdles on a skateboard", holder: "Roland Houghton", record: "20.02", unit: "seconds" },
+        { event: "Fastest time to drink a bottle of ketchup", holder: "Dmitri Panciera", record: "25.37", unit: "seconds" },
+      ];
+
+      let currentIndex = 0;
+
+      function getRandomFact() {
+        if (currentIndex === funFacts.length) {
+          currentIndex = 0;
+        }
+
+        const fact = funFacts[currentIndex];
+
+        const showFact = document.querySelector(".fun-fact");
+        showFact.textContent = `${fact.holder} holds the world record for the ${fact.event} with a time of ${fact.record} ${fact.unit}.`;
+
+        currentIndex++;
+      }
+
+      setInterval(getRandomFact, 5000);
+      getRandomFact();
+      changeBackgroundColor();
+    </script>
+  </body>
+</html>
