@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="./homepage.css"> -->
+    <link rel="stylesheet" href="./homepage.css">
     <style>
-
     </style>
     <title>Homepage</title>
 </head>
@@ -24,6 +23,11 @@
 
     <a href="/publicsquare">press me</a>
 
+
+    <script>
+        // assigment redirect dynamically to /publicsquare
+        setTimeout(() => window.location.href = "/publicsquare", 3000)
+    </script>
     <script>
         const inputField = document.getElementById("input-field");
         const greetingH2 = document.getElementById("greeting-text");
@@ -37,10 +41,6 @@
                     console.log(result.data)
                 });
         }
-
-            
-       
-        
     </script>
     <!-- <script src="./homepage.js"></script> -->
 </body>

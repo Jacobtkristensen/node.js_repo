@@ -10,7 +10,22 @@ app.get("/", (req, res) => {
 //assignment: Create a new route called publicsquare that serves publicSquare.html
 app.get("/publicsquare", (req, res) => {
     res.sendFile(__dirname + "/public/publicSquare/publicSquare.html");
-})
+});
+
+app.get("/treasuretrove", (req,res) => {
+    res.send({data: "You found it!"});
+});
+
+//assignment 
+app.get("/secretpassphrase", (req, res) => {
+    
+    if(req.query.passphrase !== "SesameOpenUp") {
+        res.status(400).send({data: "Wrong passphrase"});
+    } else {
+        res.redirect("/treasuretrove")
+    }
+});
+
 
 // Task     take a name from the query string and greet  
 // the person if you know them, otherwise say, "Hello stranger"
