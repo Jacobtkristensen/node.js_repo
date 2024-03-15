@@ -14,14 +14,17 @@
 //  - resolved
 //  - rejected
 
+// SOlution 3 - Async/Await
+// syntactic sugar
+
 new Promise((resolve, reject) => {
   setTimeout(() => {
     try {
-        // throw new Error("some error");
-        const functionReference = () => "NICE";
+      // throw new Error("some error");
+      const functionReference = () => "NICE";
       resolve(functionReference);
     } catch (error) {
-        //console.log(error);
+      //console.log(error);
       reject(error);
     }
   }, 2000);
@@ -30,7 +33,6 @@ new Promise((resolve, reject) => {
   .catch((errorMessage) => console.log(errorMessage));
 console.log("Im walking here...");
 
-
 // Create a promisified function
 // that is, a function that returns a new promise
 // it should be called myPromise
@@ -38,17 +40,17 @@ console.log("Im walking here...");
 // create a 3 second timeout to simulate asynchronous behavior
 
 function myPromise() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
       try {
         throw "Oh NO";
         resolve("Something Good");
-      } catch(error) {
-        console.log(error)
+      } catch (error) {
+        console.log(error);
         reject("Something Bad");
       }
-    }, 3000)
-    });
+    }, 3000);
+  });
 }
 
 // myPromise()
@@ -63,6 +65,31 @@ function myPromise() {
   as much as possible try to imagine how fetch works and simulate the underlying code.
 */
 
-function myFetch() {
-  
-}
+// function myFetch(URL, options = {}) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       try {
+//         resolve({
+//           json: new Promise((resolve, reject) => resolve("Response from server")),
+//         });
+//       } catch {
+//         reject();
+//       }
+//     }, 2500);
+//   });
+// }
+// myFetch("https://www.domain.com")
+//   .then((response) => response.json())
+//   .then((result) => console.log(result));
+
+
+// IIFE - Immediately Invoked Function Expression
+(async function() {
+  try {
+    const myPromiseResult = await myPromise();
+    console.log(myPromiseResult);
+  } catch (error) {
+    console.log(error);
+  }
+})()
+
