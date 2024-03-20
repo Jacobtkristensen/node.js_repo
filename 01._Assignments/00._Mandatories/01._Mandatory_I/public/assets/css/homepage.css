@@ -1,0 +1,83 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.5;
+  background-color: #3a3a3a;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 100;
+}
+
+#homepage-headline {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+#homepage-info {
+  font-size: 1.5em;
+  font-weight: 100;
+  margin-bottom: 1em;
+  text-align: center;
+}
+.topic-info {
+    font-size: 1.4em;
+    font-weight: 100;
+    margin-bottom: 1em;
+    text-align: center;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 1px;
+    
+}
+.topic-info span {
+    font-weight: 300;
+}
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  /* border-color: red;
+    border-style: dotted; */
+  padding: 10px;
+  gap: 1em;
+  margin: 5px 10px 5px 10px;
+}
+
+/* .grid-item {
+  border-color: blue;
+  border-style: dashed;
+} */
+.grid-item a {
+  color: #fff;
+  font-size: 1.5em;
+  margin-bottom: 1em;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s;
+  font-weight: 300;
+}
+
+.grid-item a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.6s;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.grid-item a:hover::after {
+  width: 100%;
+}
+
+.grid-item a:hover {
+  color: #ffff;
+  font-weight: 300;
+}

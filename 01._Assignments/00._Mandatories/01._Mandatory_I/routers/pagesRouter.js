@@ -1,5 +1,13 @@
 import { Router} from "express";
-import { homepagePage } from "../util/readPages.js";
+import { homepagePage,
+    introductionPage,
+    firstserverPage,
+    htmlfilesPage,
+    timePage,
+    exportImportPage,
+    ssrPage,
+    environmentPage
+} from "../util/readPages.js";
 
 const router = Router();
 
@@ -8,25 +16,25 @@ router.get("/", (req, res) => {
     res.send(homepagePage);
 });
 router.get("/introduction", (req, res) => {
-    res.send();
+    res.send(introductionPage);
 });
 router.get("/firstserver", (req, res) => {
-    res.send();
+    res.send(firstserverPage);
 });
 router.get("/htmlfiles", (req, res) => {
-    res.send();
+    res.send(htmlfilesPage);
 });
 router.get("/time", (req, res) => {
-    res.send();
+    res.send(timePage);
 });
 router.get("/exportImport", (req, res) => {
-    res.send();
+    res.send(exportImportPage);
 });
 router.get("/ssr", (req, res) => {
-    res.send();
+    res.send(ssrPage);
 });
 router.get("/environment", (req, res) => {
-    res.send();
+    res.send(environmentPage);
 });
 
 

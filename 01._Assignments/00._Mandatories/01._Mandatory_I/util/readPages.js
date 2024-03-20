@@ -1,22 +1,57 @@
 import { readPage, renderPage } from "./templatingEngine.js";
-import { GOOGLE_FONT_LINKS } from "./ExternalLinks.js";
-
+import {
+    GOOGLE_FONT_LINKS,
+    MAIN_CSS_LINK,
+    HOMEPAGE_CSS_LINK,
+    TOPIC_CSS_LINK,
+    CODE_HIGHLIGHT_LINK
+} from "./ExternalLinks.js";
 
 const homepage = readPage("./public/pages/homepage/homepage.html");
 export const homepagePage = renderPage(homepage, {
     tabTitle: "Homepage",
-    STYLE_IMPORTS: GOOGLE_FONT_LINKS + '<link rel="stylesheet" href="/assets/css/main.css">'
+    STYLE_IMPORTS: GOOGLE_FONT_LINKS + HOMEPAGE_CSS_LINK + MAIN_CSS_LINK
 
 });
 
-// const matches = readPage("./public/pages/matches/matches.html");
-// export const matchesPage = renderPage(matches, {
-//     tabTitle: "DogInder Match",
-//     STYLE_IMPORTS: '<link rel="stylesheet" href="pages/matches/matches.css">'
+const introduction = readPage("./public/pages/introduction/introduction.html");
+export const introductionPage = renderPage(introduction, {
+    tabTitle: "Introduction",
+    STYLE_IMPORTS: GOOGLE_FONT_LINKS + MAIN_CSS_LINK + TOPIC_CSS_LINK + CODE_HIGHLIGHT_LINK
+});
 
-// });
+const firstserver = readPage("./public/pages/firstserver/firstserver.html");
+export const firstserverPage = renderPage(firstserver, {
+    tabTitle: "First Server",
+    STYLE_IMPORTS: GOOGLE_FONT_LINKS + MAIN_CSS_LINK + TOPIC_CSS_LINK + CODE_HIGHLIGHT_LINK
+});
 
-// const contact = readPage("./public/pages/contact/contact.html");
-// export const contactPage = renderPage(contact, {
-//     tabTitle: "DogInder Contact",
-// });
+const htmlfiles = readPage("./public/pages/htmlfiles/htmlfiles.html");
+export const htmlfilesPage = renderPage(htmlfiles, {
+    tabTitle: "HTML Files",
+    STYLE_IMPORTS: GOOGLE_FONT_LINKS + MAIN_CSS_LINK + TOPIC_CSS_LINK + CODE_HIGHLIGHT_LINK
+});
+
+const time = readPage("./public/pages/time/time.html");
+export const timePage = renderPage(time, {
+    tabTitle: "Time",
+    STYLE_IMPORTS: GOOGLE_FONT_LINKS + MAIN_CSS_LINK + TOPIC_CSS_LINK + CODE_HIGHLIGHT_LINK
+});
+
+const exportImport = readPage("./public/pages/exportImport/exportImport.html");
+export const exportImportPage = renderPage(exportImport, {
+    tabTitle: "Export Import",
+    STYLE_IMPORTS: GOOGLE_FONT_LINKS + MAIN_CSS_LINK + TOPIC_CSS_LINK + CODE_HIGHLIGHT_LINK
+});
+
+const ssr = readPage("./public/pages/ssr/ssr.html");
+export const ssrPage = renderPage(ssr, {
+    tabTitle: "SSR",
+    STYLE_IMPORTS: GOOGLE_FONT_LINKS + MAIN_CSS_LINK + TOPIC_CSS_LINK + CODE_HIGHLIGHT_LINK
+});
+
+const environment = readPage("./public/pages/environment/environment.html");
+export const environmentPage = renderPage(environment, {
+    tabTitle: "Environment",
+    STYLE_IMPORTS: GOOGLE_FONT_LINKS + MAIN_CSS_LINK + TOPIC_CSS_LINK + CODE_HIGHLIGHT_LINK
+});
