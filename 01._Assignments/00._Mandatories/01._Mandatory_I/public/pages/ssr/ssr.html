@@ -1,3 +1,63 @@
 <div class="topic-headline">
-    <p>SSR</p>
+  <p>Server-side rendering</p>
+</div>
+
+<div id="top" class="topic-list">
+  <a href="#client">Client vs. Server-side</a>
+  <a href="#fileread">Filereading</a>
+  <a href="#nodemonext">Nodemon extra</a>
+</div>
+<section id="client">
+  <h2>Client vs. Server-side Rendering</h2>
+  <div>
+    <pre><code>
+      // Example of a simple function in JavaScript
+      function greet(name) {
+        return 'Hello, ' + name + '!';
+      }
+      
+      const greeting = greet('Alice');
+      console.log(greeting); // Output: 'Hello, Alice!'
+      
+    </code></pre>
   </div>
+</section>
+<section id="fileread">
+  <h2>File reading</h2>
+  <div>
+    <pre><code>
+      // Example of a callback function in JavaScript
+      function processData(callback) {
+        // Simulate data fetching
+        const data = 'fetched data';
+        callback(data);
+      }
+      
+      processData(function(data) {
+        console.log('Data received:', data);
+      });
+      
+    </code></pre>
+  </div>
+</section>
+<section id="nodemonext">
+  <h2>Nodemon extra</h2>
+  <div>
+    <pre><code>
+      {
+        "name": "my-first-node-app",
+        "version": "1.0.0",
+        "description": "My first Node.js app",
+        "main": "index.js",
+        "scripts": {
+          "start": "node index.js"
+        },
+        "dependencies": {
+          "express": "^4.17.1"
+        }
+      }
+      
+    </code></pre>
+  </div>
+</section>
+

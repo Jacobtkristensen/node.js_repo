@@ -1,3 +1,124 @@
 <div class="topic-headline">
-    <p>HTML files</p>
+  <p>HTML files</p>
+</div>
+
+<div id="top" class="topic-list">
+  <a href="#nodemon">Nodemon</a>
+  <a href="#loops">Loops</a>
+  <a href="#url">URL Anatomy</a>
+  <a href="#postreq">POST request</a>
+  <a href="#bodyparse">Body parsing</a>
+</div>
+
+<section id="nodemon">
+  <h2>Nodemon</h2>
+  <div>
+    <pre><code>
+      // To use Nodemon for automatic server restarts on file changes, install it globally or as a dev dependency:
+      // npm install -g nodemon
+      // OR
+      // npm install --save-dev nodemon
+      
+      // Then, you can start your server with Nodemon instead of node to automatically restart upon changes:
+      // nodemon index.js
+      </code></pre>
   </div>
+</section>
+<section id="loops">
+  <h2>Loops</h2>
+  <div>
+    <pre><code>
+      // Example of loops in JavaScript
+
+      // For loop
+      for (let i = 0; i < 5; i++) {
+        console.log(`For loop iteration: ${i}`);
+      }
+      
+      // While loop
+      let j = 0;
+      while (j < 5) {
+        console.log(`While loop iteration: ${j}`);
+        j++;
+      }
+      
+    </code></pre>
+  </div>
+</section>
+<section id="url">
+  <h2>Anatomy of an URL</h2>
+  <div>
+    <pre><code>
+      // Anatomy of a URL
+      // Example URL: https://www.example.com:80/path/to/resource?query=search#fragment
+      
+      // Protocol: https
+      // Hostname: www.example.com
+      // Port: 80
+      // Path: /path/to/resource
+      // Query string: ?query=search
+      // Fragment: #fragment
+      
+      // In a Node.js context, you can use the URL module to parse URLs:
+      const url = require('url');
+      const myUrl = new URL('https://www.example.com:80/path/to/resource?query=search#fragment');
+      
+      console.log(myUrl.hostname); // Outputs: www.example.com
+      
+    </code></pre>
+  </div>
+</section>
+<section id="postreq">
+  <h2>POST request</h2>
+  <div>
+    <pre><code>
+      // Handling a POST request with Express
+
+      const express = require('express');
+      const bodyParser = require('body-parser');
+      
+      const app = express();
+      
+      // Middleware to parse request bodies
+      app.use(bodyParser.urlencoded({ extended: true }));
+      app.use(bodyParser.json());
+      
+      app.post('/submit-data', (req, res) => {
+        // Access POST data with req.body
+        console.log(req.body);
+        res.send('POST request to the homepage');
+      });
+      
+      app.listen(3000, () => console.log('Server started on port 3000'));
+      
+    </code></pre>
+  </div>
+</section>
+<section id="bodyparse">
+  <h2>Body parsing</h2>
+  <div>
+    <pre><code>
+      // Example of body parsing in Express.js
+
+      const express = require('express');
+      const app = express();
+      
+      // Built-in middleware to handle urlencoded form data
+      app.use(express.urlencoded({ extended: true }));
+      
+      // Built-in middleware to handle JSON data
+      app.use(express.json());
+      
+      app.post('/api/data', (req, res) => {
+        // Accessing parsed body data
+        console.log(req.body);
+        res.json({ message: 'Data received successfully', receivedData: req.body });
+      });
+      
+      app.listen(3000, () => {
+        console.log('Server running on http://localhost:3000');
+      });
+      
+    </code></pre>
+  </div>
+</section>

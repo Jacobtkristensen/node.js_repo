@@ -10,68 +10,409 @@
   <a href="#restapi">REST API</a>
 </div>
 
-
-</div>
 <section id="git">
   <h2>Git</h2>
   <div>
+    <p>
+      Git is a version control system that allows developers to track changes in their code and collaborate with others, making it
+      easy to see what changes have been made, and by who.
+      <br />
+      It is especially useful when working on a project with other developers, as it allows for easy merging of changes and makes
+      it possible to resolve potential conflicts.
+      <br />
+      Reviewing each other's code is also a part of the process, which results in higher quality code, and ensures that it's not
+      only you, who knows what your part of the project is responsible for.
+      <br />
+      <br />
+      Below are some of the most commonly used git commands
+    </p>
     <pre><code>
       git init
       </code></pre>
+    <p>
+      Is used to instantiate a git repository in your project directory. This creates a .git folder in the root of the working
+      directory, if one doesn't exist already. This command only needs to be run once per project. <br /><br />
+    </p>
+    <pre><code>
+      git add -A
+      </code></pre>
+    <p>
+      This command will stage ALL changes in the entire repository, whereas the &nbsp;<code> git add . </code> will only stage
+      files in the current directory and its subdirectories.
+
+      <br /><br />
+      it is also possible to stage a single file by using<code> git add [file] </code> <br /><br />
+      <code>git add -A</code> is more convenient, especially when working with files in multiple directories.
+      <br />
+      <br />
+    </p>
+    <pre><code>
+        git commit -m "your-message"
+        </code></pre>
+    <p>
+      This command will commit the staged files to the repository. The -m flag is used to include a message with the commit. This
+      is especially useful when looking back at previous commits to understand the changes that were made.
+      <br />
+      <br />
+      It is also good practice to describe whatever changes have been made, so that other developers have a clear understanding of
+      the changes made.
+      <br />
+      <br />
+    </p>
+    <pre><code>
+      git push origin main
+      </code></pre>
+    <p>
+      This command will push the committed changes to the main branch of the remote repository. You can replace main with the name
+      of the branch you're working on.
+
+      <br />
+      <br />
+      <br />
+      <br />
+    </p>
+    <pre><code>
+    git status
+  </code></pre>
+    <p>
+      Shows the current state of the working directory and staging area. It lists all the files that have been modified, are
+      untracked, or are staged for commit.
+      <br />
+      This is good to use when you want to see an overview of the changes that have been made, and to see which files are staged,
+      and which are not.
+      <br /><br />
+    </p>
   </div>
+  <pre><code>
+    git checkout [branch-name]
+  </code></pre>
+  <p>
+    Switches to the specified branch. When adding <code>-b</code> flag as in <code>git checkout -b [branch-name]</code>, it will
+    create a new branch and immediately switch to it. This command is used to navigate between different development branches and
+    for creating new branches to work on. <br /><br />
+  </p>
+  <pre><code>
+    git merge [branch-name]
+  </code></pre>
+  <p>
+    Merges the specified branch into your current branch.
+    <br />
+    This allows you to combine the changes from another branch with your current branch.
+    <br /><br />
+  </p>
+  <pre><code>
+    git pull origin [branch-name]
+  </code></pre>
+  <p>
+    pulls and merges changes from the remote branch to your local branch. This updates your current branch with the latest commits
+    from the remote repository.
+    <br />
+    It's essential for keeping your local repository up-to-date with changes from others, or when working on different pc's.
+    <br /><br />
+  </p>
 </section>
 <section id="datatypes">
   <h2>Data types</h2>
   <div>
+    <h3>Strings</h3>
+    <p>
+      Template literals are a way to concatenate strings in JS. They are denoted by backticks (`) and can contain variables using
+      the <code>${}</code> syntax.
+    </p>
     <pre><code>
-      // Example of data types in JavaScript
-      let string = 'This is a string';
-      let number = 42;
-      let boolean = true;
-      let nullValue = null;
-      let undefinedValue;
-      let object = {name: 'John', age: 30};
+    const firstName = "Anders";
+    const lastName = "Latif";
+  
+    const fullName = `My first name is ${firstName} and my last name is ${lastName}`
+    console.log(fullName)
+    // Result: My first name is Anders and my last name is Latif
+    </code></pre>
+    <br />
+    <br />
+    <h3>Numbers</h3>
+    <p>
+      Here we try to add a string and a number together.
+      <br />
+      To combine the string <code>"2023"</code> and the number <code>1</code>, we can use the <code>parseInt()</code> function to
+      convert the string to a number before adding them together.
+    </p>
+    <pre><code>
+    const year = "2023";
+    const increment = 1;
+    
+    let newYear = parseInt(year) + increment;
+      
+    console.log(newYear);
+    // Result: 2024
+    </code></pre>
+    <br />
+    <br />
+    <p>
+      Here we try to add two strings together.
+      <br />
+      To combine the strings <code>"1.10"</code> and <code>"2.30"</code>, we can use the <code>parseFloat()</code> function to
+      convert the strings to numbers before adding them together.
+    </p>
+    <pre><code>
+    const numberOne = "1.10";
+    const numberTwo = "2.30";
+
+    const sum = parseFloat(numberOne) + parseFloat(numberTwo);
+    console.log(sum);
+    // Result: 3.4
+    </code></pre>
+    <br />
+    <br />
+    <p>same as above, but we use the <code>toFixed()</code> method, to ensure that we get a number with two decimals.</p>
+    <pre><code>
+    const anotherNumberOne = "1.10";
+    const anotherNumberTwo = "2.30";
+      
+    let sum2 = parseFloat(anotherNumberOne) + parseFloat(anotherNumberTwo);
+    sum2 = sum2.toFixed(2);      
+    console.log(sum2);
+    // Result: 3.40
+    </code></pre>
+    <br />
+    <br />
+    <p>
+      Here we try to add three numbers together and then calculate the average.
+      <br />
+      We again use <code>toFixed()</code> to ensure that we get a number with five decimals.
+    </p>
+    <pre><code>
+    const one = 10;
+    const two = 45;
+    const three = 98;
+
+    let sum3 = (one + two + three) / 3;
+    sum3 = sum3.toFixed(5);
+    console.log(sum3);
+    // Result: 51.00000
+    </code></pre>
+    <br />
+    <br />
+    <h3>Characters</h3>
+    <p>
+      Here we try to extract a character from a string using <code>string[number]</code> and the <code>substring()</code> method.
+      <br />
+      substring takes two arguments, the start index and the end index.
+    </p>
+    <pre><code>      
+    const letters = "abc";
+    let char = letters[2];
+    let char2 = letters.substring(2, 3);
+    console.log(char);
+    console.log(char2);
+    // Both resulting in: c
+    </code></pre>
+    <br />
+    <br />
+    <p>
+      Here we try to replace a character in a string using the <code>replace()</code> method.
+      <br />
+      First argument is the character to be replaced, and the second argument is the character to replace it with.
+    </p>
+    <pre><code>
+    const fact = "You are learning javascript!";
+
+    let factCapitalized = fact.replace("j", "J");
+    console.log(factCapitalized);
+    // Result: You are learning Javascript!
+      </code></pre>
+    <br />
+    <br />
+    <h3>Objects</h3>
+    <p>
+      Here we access the value of a property in an object, but first we reassign the value to a new variable, making it easily
+      accessible.
+    </p>
+    <pre><code>
+    const myObject = { message: "Hello, earthling! I bring peace." };
+
+    let message = myObject.message;
+    console.log(message); 
+    // Result: Hello, earthling! I bring peace.
+    </code></pre>
+    <br />
+    <br />
+    <p>Here we define an object and its properties.</p>
+    <pre><code>
+    const me = {
+      name: "Jacob",
+      age: 30      
+    };
+    
+    console.log(me); 
+    // Result: { name: 'Jacob', age: 30 }
+    </code></pre>
+  </div>
+    <br />
+    <br />
+    <p>
+      Here we add a new key value pair to an object. 
+    </p>
+    <pre><code>
+    const stackOverflow = {};
+
+    stackOverflow.isAllowed = true;
+    console.log(stackOverflow.isAllowed); 
+    // Result: true
+    </code></pre>
+    <br />
+    <br />
+    <p>
+      Here we remove a property from an object and assign a new one.
+    </p>
+    <pre><code>
+    const thisSong = { description: "The best song in the world." };
+
+    delete thisSong.description;
+    thisSong.about = "Just a tribute.";
+    console.log(thisSong); 
+    // Result: { about: 'Just a tribute.' }
+    </code></pre>
+    <br />
+    <br />
+    <h3>Arrays</h3>
+    <p>
+      Here we access an element in an array by its index.
+    </p>
+    <pre><code>
+    const letters = ["a", "b", "c"];
+    const letter = letters[1];
+    console.log(letter); 
+    // Result: b
+    </code></pre>
+    <br />
+    <br />
+    <p>
+      Here we add elements to the end of an array.
+    </p>
+    <pre><code>
+    const friends = [];
+    friends.push("Jacob", "Poul", "Karlo");
+    console.log(friends); 
+    // Result: ['Jacob', 'Poul', 'Karlo']
+    </code></pre>
+    <br />
+    <br />
+    <p>
+      We can also add elements using the <code>splice()</code> method.
+      <br />
+      The first argument is the index where the new elements should be added, the second argument is the number of elements to be
+      removed, and the remaining arguments are the elements to be added.
+    </p>
+    <pre><code>
+    const diet = ["tomato", "cucumber", "rocket"];
+    diet.splice(2, 0, "hamburger", "soda", "burger");
+    console.log(diet); 
+    // Result: ['tomato', 'cucumber', 'hamburger', 'soda', 'burger', 'rocket']
+    </code></pre>
+    <br />
+    <br />
+    <p>
+      Here we remove the last element from an array using the <code>pop()</code> method.
+    </p>
+    <pre><code>
+    const diet2 = ["tomato", "cucumber", "hamburger", "soda", "burger", "rocket"];
+    diet2.pop();
+    console.log(diet2);       
+    // Result: ['tomato', 'cucumber', 'hamburger', 'soda', 'burger']      
+    </code></pre>
+    <p>
+      Here we copy the above array.
+    </p>
+      <pre><code>
+      const dinnerTray = diet2.slice();
+      console.log(dinnerTray); 
+      // Result: ['tomato', 'cucumber', 'hamburger', 'soda', 'burger']
+      </code></pre>
+    <br />
+    <br />
+    <p>
+      Here we iterate over an array and log every second element.
+    </p>
+    <pre><code>
+    const lettersExpanded = ["a", "b", "c", "d", "e", "f", "g", "h"];
+    for (let i = 1; i < lettersExpanded.length; i += 2) {
+    console.log(lettersExpanded[i]);
+    }
+    // Result: b, d, f, h
+    </code></pre>
+    <br />
+    <br />
+    <p>
+      Loop through array and print numbers greater than 6, or below 0 and add the rest to a new array.
+      <br />
+      Then print the new array.
+    </p>
+    <pre><code>
+    const numbers = [5, 3, 2, 7, 11, 12, 0, -20, 6];
+    const discardedNumbers = [];
+    for (let i = 0; i < numbers.length; i++) {
+      if (numbers[i] > 6 || numbers[i] < 0) {
+        console.log(numbers[i]);
+      }
+      else {
+      discardedNumbers.push(numbers[i]);
+      }
+    }
+    console.log(discardedNumbers);
+    // Result: 7, 11, 12, -20 
+    // Result: [5, 3, 2, 6]
     </code></pre>
   </div>
 </section>
 <section id="typecoercion">
   <h2>Type coercion</h2>
   <div>
+    <p>
+      Type coercion in Javascript is the automatic or implicit conversion of values from one data type to another. Usually it's when you perform operations on values of different types,
+      such as adding a string and a number together.
+      <br />
+      Understanding this concept is important, as it can lead to bugs and unexpected behavior.
+      <br />
+      <br />
+      Example of type coercion and strict equality operator in JavaScript
+    </p>
     <pre><code>
-      // Example of type coercion in JavaScript
-      let result = '3' + 2; // '32'
-      let result2 = '3' - 2; // 1
+    2 == "2" -> true 
+    2 === "2" -> false //checks for both value and type
+    '100' + 10 = '10010'
     </code></pre>
+    <p>
+      In the first example, the double equals operator coerces the string "2" to a number before comparing the two values, which results in true.
+      <br />
+      In the second example, the strict equality operator does not perform type coercion, so the comparison returns false.
+      <br />
+      In the third example, the plus operator concatenates the string "100" and the number 10, resulting in the string "10010".
   </div>
 </section>
 <section id="nodejs">
   <h2>Node.js</h2>
   <div>
-    <pre><code>
-      // Example of a simple Node.js server
-      const http = require('http');
-      const server = http.createServer((req, res) => {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/plain');
-        res.end('Hello World');
-      });
-      
-      server.listen(3000, '127.0.0.1', () => {
-        console.log('Server running at http://127.0.0.1:3000/');
-      });
-    </code></pre>
+    <p>
+      Node.js is an open-source Javascript runtime environment that allows developers to run Javascript code outside of a web browser.
+      <br />
+      <br />
+      I among others have used it last semester to run javascript files. 
+      <br />
+      To run a JavaScript file using Node.js, navigate to the directory where the file is located and execute the command<code> node [filename].js</code> 
+      This will run the JavaScript code in the file.    </p>
   </div>
 </section>
 <section id="restapi">
   <h2>REST API</h2>
   <div>
-    <pre><code>
-      // Example REST API call using fetch
-      fetch('https://api.example.com/data')
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
-    </code></pre>
+    <h3>Conventions</h3>
+    <img id="restapi-img" src="../../assets/images/REST_API.png" alt="REST API conventions" />
   </div>
-</section>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
 
+</section>

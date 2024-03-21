@@ -1,26 +1,25 @@
 <div class="topic-headline">
-  <p>Export/Import</p>
+  <p>Asynchronous Code / Routers </p>
 </div>
 
 <div id="top" class="topic-list">
-  <a href="#exportimport">Export/Import</a>
-  <a href="#typemodule">Type Module</a>
-  <a href="#static">Static</a>
-  <a href="#frontback">frontend/backend</a>
-  <a href="#structure">Structure</a>
+  <a href="#linting">Linting</a>
+  <a href="#debug">Debugging</a>
+  <a href="#async">Asynchronous JS</a>
+  <a href="#routers">Routers</a>
 </div>
 
 
-<section id="exportimport">
-  <h2>Export/Import</h2>
+<section id="linting">
+  <h2>Linting</h2>
   <div>
     <pre><code>
       git init
       </code></pre>
   </div>
 </section>
-<section id="typemodule">
-  <h2>Type module vs. commonjs</h2>
+<section id="debug">
+  <h2>Debugging</h2>
   <div>
     <pre><code>
       // Example of data types in JavaScript
@@ -33,8 +32,8 @@
     </code></pre>
   </div>
 </section>
-<section id="static">
-  <h2>Static in Node.js</h2>
+<section id="async">
+  <h2>Asynchronous code in JS</h2>
   <div>
     <pre><code>
       // Example of type coercion in JavaScript
@@ -43,8 +42,8 @@
     </code></pre>
   </div>
 </section>
-<section id="frontback">
-  <h2>Backend vs Frontend fetching</h2>
+<section id="routers">
+  <h2>Routers (Express)</h2>
   <div>
     <pre><code>
       // Example of a simple Node.js server
@@ -58,18 +57,6 @@
       server.listen(3000, '127.0.0.1', () => {
         console.log('Server running at http://127.0.0.1:3000/');
       });
-    </code></pre>
-  </div>
-</section>
-<section id="structure">
-  <h2>Structuring frontend</h2>
-  <div>
-    <pre><code>
-      // Example REST API call using fetch
-      fetch('https://api.example.com/data')
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
     </code></pre>
   </div>
 </section>

@@ -6,7 +6,7 @@ import { homepagePage,
     timePage,
     exportImportPage,
     ssrPage,
-    environmentPage
+    asyncPage
 } from "../util/readPages.js";
 
 const router = Router();
@@ -33,8 +33,8 @@ router.get("/exportImport", (req, res) => {
 router.get("/ssr", (req, res) => {
     res.send(ssrPage);
 });
-router.get("/environment", (req, res) => {
-    res.send(environmentPage);
+router.get("/async", (req, res) => {
+    res.send(asyncPage);
 });
 
 

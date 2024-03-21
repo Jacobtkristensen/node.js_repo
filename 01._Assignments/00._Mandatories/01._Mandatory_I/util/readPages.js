@@ -50,8 +50,8 @@ export const ssrPage = renderPage(ssr, {
     STYLE_IMPORTS: GOOGLE_FONT_LINKS + MAIN_CSS_LINK + TOPIC_CSS_LINK + CODE_HIGHLIGHT_LINK
 });
 
-const environment = readPage("./public/pages/environment/environment.html");
-export const environmentPage = renderPage(environment, {
-    tabTitle: "Environment",
+const async = readPage("./public/pages/async/async.html");
+export const asyncPage = renderPage(async, {
+    tabTitle: "Asynchronous Code / Routers",
     STYLE_IMPORTS: GOOGLE_FONT_LINKS + MAIN_CSS_LINK + TOPIC_CSS_LINK + CODE_HIGHLIGHT_LINK
 });

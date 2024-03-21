@@ -1,3 +1,74 @@
 <div class="topic-headline">
-    <p>Time</p>
+  <p>Time</p>
+</div>
+
+<div id="top" class="topic-list">
+  <a href="#crud">CRUD REST API</a>
+  <a href="#date">Date</a>
+  <a href="#fetch">Fetch</a>
+  <a href="#deployment">Deployment</a>
+</div>
+<section id="crud">
+  <h2>Loops</h2>
+  <div>
+    <pre><code>
+      // Example of a simple function in JavaScript
+      function greet(name) {
+        return 'Hello, ' + name + '!';
+      }
+      
+      const greeting = greet('Alice');
+      console.log(greeting); // Output: 'Hello, Alice!'
+      
+    </code></pre>
   </div>
+</section>
+<section id="date">
+  <h2>Anatomy of an URL</h2>
+  <div>
+    <pre><code>
+      // Working with dates in JavaScript
+      const now = new Date();
+      console.log('Current date and time:', now.toString());
+      
+      // Formatting a date
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      console.log('Formatted date:', now.toLocaleDateString('en-US', options));
+      
+      // Calculate a future date
+      const futureDate = new Date(now);
+      futureDate.setDate(now.getDate() + 7); // 7 days from now
+      console.log('Future date:', futureDate.toLocaleDateString('en-US'));
+      
+    </code></pre>
+  </div>
+</section>
+<section id="fetch">
+  <h2>POST request</h2>
+  <div>
+    <pre><code>
+      // Using Fetch API to make HTTP requests
+      fetch('https://jsonplaceholder.typicode.com/posts/1')
+        .then(response => response.json())
+        .then(json => console.log(json))
+        .catch(err => console.error('Error fetching data:', err));
+      
+    </code></pre>
+  </div>
+</section>
+<section id="deployment">
+  <h2>Deployment</h2>
+  <div>
+    <pre><code>
+      // To deploy a Node.js app to Heroku, follow these steps:
+      1. Create a Heroku account and install the Heroku CLI.
+      2. Navigate to your project directory in the terminal.
+      3. Initialize a git repository if you haven't already by running 'git init'.
+      4. Create a Heroku app by running 'heroku create'.
+      5. Add a 'start' script in your package.json that defines how to start your app, e.g., "start": "node index.js".
+      6. Deploy your app by pushing your code to the Heroku remote using 'git push heroku master'.
+      7. Access your deployed app using the URL provided by Heroku.
+      
+    </code></pre>
+  </div>
+</section>

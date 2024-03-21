@@ -1,3 +1,130 @@
 <div class="topic-headline">
-    <p>First server</p>
+  <p>First server</p>
+</div>
+
+<div id="top" class="topic-list">
+  <a href="#scoping">Scoping</a>
+  <a href="#function">Functions</a>
+  <a href="#callbacks">Callbacks</a>
+  <a href="#package">Package.json</a>
+  <a href="#modules">Modules</a>
+  <a href="#express">Express</a>
+  <a href="#get">GET requests</a>
+</div>
+
+<section id="scoping">
+  <h2>Scoping</h2>
+  <div>
+    <pre><code>
+    // Example of block scoping with let
+    if (true) {
+    let scopedVar = 'I am scoped to this block';
+    console.log(scopedVar); // Output: 'I am scoped to this block'
+    }
+    // console.log(scopedVar); // Uncaught ReferenceError: scopedVar is not defined
+
+      </code></pre>
   </div>
+</section>
+<section id="function">
+  <h2>Functions</h2>
+  <div>
+    <pre><code>
+      // Example of a simple function in JavaScript
+      function greet(name) {
+        return 'Hello, ' + name + '!';
+      }
+      
+      const greeting = greet('Alice');
+      console.log(greeting); // Output: 'Hello, Alice!'
+      
+    </code></pre>
+  </div>
+</section>
+<section id="callbacks">
+  <h2>Callbacks</h2>
+  <div>
+    <pre><code>
+      // Example of a callback function in JavaScript
+      function processData(callback) {
+        // Simulate data fetching
+        const data = 'fetched data';
+        callback(data);
+      }
+      
+      processData(function(data) {
+        console.log('Data received:', data);
+      });
+      
+    </code></pre>
+  </div>
+</section>
+<section id="package">
+  <h2>Package.json</h2>
+  <div>
+    <pre><code>
+      {
+        "name": "my-first-node-app",
+        "version": "1.0.0",
+        "description": "My first Node.js app",
+        "main": "index.js",
+        "scripts": {
+          "start": "node index.js"
+        },
+        "dependencies": {
+          "express": "^4.17.1"
+        }
+      }
+      
+    </code></pre>
+  </div>
+</section>
+<section id="modules">
+  <h2>Modules</h2>
+  <div>
+    <pre><code>
+      // Creating a module (myModule.js)
+      module.exports = {
+        greet: function(name) {
+          console.log('Hello, ' + name + '!');
+        }
+      };
+      
+      // Importing a module (app.js)
+      const myModule = require('./myModule');
+      myModule.greet('Alice');
+      
+    </code></pre>
+  </div>
+</section>
+<section id="express">
+  <h2>Express</h2>
+  <div>
+    <pre><code>
+      // Setting up a simple Express server
+      const express = require('express');
+      const app = express();
+      
+      app.get('/', (req, res) => {
+        res.send('Hello World with Express!');
+      });
+      
+      app.listen(3000, () => {
+        console.log('Server is running on http://localhost:3000');
+      });
+      
+    </code></pre>
+  </div>
+</section>
+<section id="get">
+  <h2>GET requests</h2>
+  <div>
+    <pre><code>
+      // Handling GET requests with Express
+      app.get('/api/data', (req, res) => {
+        res.json({message: 'This is a response to a GET request'});
+      });
+      
+    </code></pre>
+  </div>
+</section>
