@@ -1,4 +1,10 @@
+<script>
+  import Greeter from "./components/Greeter/greeter.svelte";
+  import FriendsCounter from "./components/friendsCounter/friendsCounter.svelte";
+</script>
 
 <main>
-  <h1>HELLO</h1>
+<Greeter name="Alfred"></Greeter>
+
+<FriendsCounter counter={3} ></FriendsCounter>
 </main>
