@@ -79,6 +79,9 @@ h3 {
   font-size: 1.5em;
   max-width: 75%;
 }
+h4 {
+  text-align: center;
+}
 #restapi-img {
   width: 100%;
   max-width: 75%;

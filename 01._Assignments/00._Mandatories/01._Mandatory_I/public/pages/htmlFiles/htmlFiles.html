@@ -13,34 +13,44 @@
 <section id="nodemon">
   <h2>Nodemon</h2>
   <div>
+    <p>
+      Nodemon is a tool that helps develop Node.js applications by automatically restarting the server when 
+      changes are detected in the codebase. This can save time and effort during development by eliminating 
+      the need to manually stop and restart the server after each code change.
+      <br />
+      <br />
+      Nodemon should only be used in development.
+    </p>
     <pre><code>
-      // To use Nodemon for automatic server restarts on file changes, install it globally or as a dev dependency:
-      // npm install -g nodemon
-      // OR
-      // npm install --save-dev nodemon
-      
-      // Then, you can start your server with Nodemon instead of node to automatically restart upon changes:
-      // nodemon index.js
+      //globally
+      npm install nodemon -g 
+      //locally
+      npm install nodemon --save-dev
+      </code></pre>
+      <p>
+      To start a Node.js application with Nodemon, use the following command:
+      </p>
+      <pre><code>
+        nodemon app.js
       </code></pre>
   </div>
 </section>
 <section id="loops">
   <h2>Loops</h2>
   <div>
+    <p>
+      Different loop methods. 
+      <br />
+      for loops, map, filter, sort, find, reduce
+    </p>
+    <h3>For loop</h3>
+    <p>
+      only use this when finger counting is needed.
+    </p>
     <pre><code>
-      // Example of loops in JavaScript
-
-      // For loop
-      for (let i = 0; i < 5; i++) {
-        console.log(`For loop iteration: ${i}`);
-      }
-      
-      // While loop
-      let j = 0;
-      while (j < 5) {
-        console.log(`While loop iteration: ${j}`);
-        j++;
-      }
+      for (let i = 0; i < numbers.length; i++) {
+        console.log(numbers[i]);
+    }
       
     </code></pre>
   </div>
