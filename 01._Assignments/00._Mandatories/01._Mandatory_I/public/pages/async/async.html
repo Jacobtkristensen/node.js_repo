@@ -13,32 +13,113 @@
 <section id="linting">
   <h2>Linting</h2>
   <div>
-    <pre><code>
-      
-      </code></pre>
+    <p>
+      Linting is a great tool to help keep your code clean and consistent. It can help catch errors, and enforces coding standards.
+      <br />
+      There are several linters available. Personally i have used Prettier, configured, for a while for formatting, and have tried ESLint once. 
+      ESLint gave me a wall of syntax errors, which was a bit overwhelming. 
+      I believe ESLint is a great Javascript linter, but I have yet to fully embrace it.
+    </p>
   </div>
 </section>
 <section id="debug">
   <h2>Debugging</h2>
   <div>
-    <pre><code>
-  
-    </code></pre>
+    <p>
+      One of the most important abilities a developer can have is the ability to debug code. There are several approaches
+      to debugging, but the simplest method is to use console.log. 
+      <br />
+      Whenever data is not being properly displayed, or not passed at all, adding console.log statements can help with
+      tracking at what point the data is lost. 
+      <br />
+      This is also possible to do in a browser, by opening dev tools and use the breakpoints to pause the code at a certain points of execution.
+      <br />
+      This, i feel like can become a bit tedious, stepping in and out of functions, pausing and resuming the code. Therefor, 
+      i prefer to use console.logs to track the data flow. 
+      <br />
+      <br />
+      That being said, the intergrated terminal and the browser, both give us runtime errors providing us with a stack trace
+      of the error, what file it is in, and what line of code the error is on.
+    </p>
   </div>
 </section>
 <section id="async">
   <h2>Asynchronous code in JS</h2>
   <div>
+    <p>
+      Javascript being single-threaded, means that it can only execute one task at a time.
+      This is an issue when we're dealing with tasks that might have a delay to them, like fetching data from an API.
+      This is where asynchronous code comes in.
+      <br />
+      <br />
+      Asynchronous code allows us to "wait" for a task to finish, and then execute said task when its ready.
+      This is done by using callbacks, promises, or async/await.(there's more, but this was what came to mind when thinking about it.)
+      <br />
+      <br />
+      Below is an example of how to fetch data from an API using async/await.
+      <br />
+    </p>
     <pre><code>
-
+      //part of a post request to chatGPT API, sending a list of offers and getting a recipe in return
+      async function fetchRecipeAdmin(selectedOffers) {
+        const recipeDescriptions = selectedOffers.map((offer) => offer[7]);
+        const data = await fetch(
+          URL,
+          makeOptions("POST", recipeDescriptions, true)
+        ).then((r) => handleHttpErrors(r));
+      }
     </code></pre>
   </div>
 </section>
 <section id="routers">
   <h2>Routers (Express)</h2>
-  <div>
+  <p>
+    we built our own routing in its own file, exporting it in the process. This is a part of the structure of our project.
+    in conjuction with our templateEngine, and readPages, we have a solid foundation for serving our server-side rendered pages.
+    <br>
+    The modular approach to building my app, makes it easier to maintain and to expand new features.
+    Below is a snippet part of the pagesRouter.js and its use in my app.js</p> 
     <pre><code>
+    import { Router} from "express";
+    import { homepagePage,
+    introductionPage,
+    firstserverPage,
+    htmlfilesPage,
+    timePage,
+    exportImportPage,
+    ssrPage,
+    asyncPage
+    } from "../util/readPages.js";
 
+    const router = Router();
+
+
+    router.get("/", (req, res) => {
+      res.send(homepagePage);
+    });
+    router.get("/introduction", (req, res) => {
+      res.send(introductionPage);
+    });
+
+    export default router;
+    </code></pre>
+    <pre><code>
+    import express from "express";
+
+    const app = express();
+      
+    app.use(express.static("public"));
+      
+      
+    import pagesRouter from "./routers/pagesRouter.js"
+    app.use(pagesRouter);
+      
+    const PORT = 8080;
+    app.listen(PORT, () => console.log("Server is running on port", PORT));
     </code></pre>
   </div>
 </section>
+<br />
+<br />
+<br />
+<br />
