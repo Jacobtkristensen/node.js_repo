@@ -8,56 +8,111 @@
   <a href="#nodemonext">Nodemon extra</a>
 </div>
 <section id="client">
-  <h2>Client vs. Server-side Rendering</h2>
+  <h2>Client(CSR) vs. Server-side Rendering(SSR)</h2>
   <div>
-    <pre><code>
-      // Example of a simple function in JavaScript
-      function greet(name) {
-        return 'Hello, ' + name + '!';
-      }
-      
-      const greeting = greet('Alice');
-      console.log(greeting); // Output: 'Hello, Alice!'
-      
-    </code></pre>
+    <h3>Load time</h3>
+    <p>
+      <strong>SSR</strong>
+      <br />
+      Initial load time is faster because the server sends the fully rendered page to the client.
+      On the other hand, on new page requests, the server has to render the page again.
+      <br />
+      <br />
+      <strong>CSR</strong>
+      <br />
+      Initial load time is slower than SSR, as the client has to wait for parsing and rendering of the page.
+
+    </p>
+    <h3>Resources</h3>
+    <p>
+      <strong>SSR</strong>
+      <br />
+      The server has to render the page on every new request, which requires more resources.
+      This also means that the client spends less resources on rendering the page.
+      <br />
+      <br />
+      <strong>CSR</strong>
+      <br />
+      Server's only job is to serve the application, and handle API requests. The client has to do the 
+      rendering, which can be resource intensive.
+
+    </p>
+    <h3>SEO</h3>
+    <p>
+      <strong>SSR</strong>
+      <br />
+      Better SEO, as the server sends the fully rendered page to the client.
+      <br />
+      <br />
+      <strong>CSR</strong>
+      <br />
+      Worse SEO, as SE rely on fully loaded HTML pages.
+    </p>
+    <h3>CORS</h3>
+    <p>
+      <strong>SSR</strong>
+      <br />
+      No CORS issues, as the server sends the fully rendered page to the client.
+      <br />
+      <br />
+      <strong>CSR</strong>
+      <br />
+      CORS issues can happen, as the client might have to make requests to different servers.
+
+    </p>
   </div>
 </section>
 <section id="fileread">
   <h2>File reading</h2>
   <div>
+    <p>
+      In Node.js, we can read files using the <code>fs</code> module. 
+      <br />
+      Below is an example of our template engine that reads the components needed for the page.
+      It then concatenates the header, page, and footer to render the page with the correct tab title and styles.
+        </p>
     <pre><code>
-      // Example of a callback function in JavaScript
-      function processData(callback) {
-        // Simulate data fetching
-        const data = 'fetched data';
-        callback(data);
+      import fs from "fs";
+
+      export function readPage(path) {
+        return fs.readFileSync(path).toString();
       }
       
-      processData(function(data) {
-        console.log('Data received:', data);
-      });
+      const footer = fs.readFileSync("./public/components/footer/footer.html").toString();
       
+      export function renderPage(page, config={}) {
+          const header = fs.readFileSync("./public/components/header/header.html").toString();
+          return header.replace("$TAB_TITLE$", config.tabTitle ?? "DogInder")
+                      .replace("$STYLE_IMPORTS$", config.STYLE_IMPORTS ?? "")
+        + page 
+        + footer;
+      }
     </code></pre>
   </div>
 </section>
 <section id="nodemonext">
-  <h2>Nodemon extra</h2>
+  <h2>Nodemon ext</h2>
   <div>
+    <p>
+      we learned that nodemon wasn't reloading the server when we were editing the HTML & CSS files.
+      <br />
+      Nodemon can be configured to watch for changes in specific file extensions. 
+    </p>
+      <pre><code>
+        nodemon --ext html,js,json,css
+      </code></pre>
+    <p>
+      The above will add the following to the <code>nodemon.json</code> file.
+    </p>
     <pre><code>
       {
-        "name": "my-first-node-app",
-        "version": "1.0.0",
-        "description": "My first Node.js app",
-        "main": "index.js",
-        "scripts": {
-          "start": "node index.js"
-        },
-        "dependencies": {
-          "express": "^4.17.1"
-        }
-      }
-      
+        "ext": "html,js,json,css"
+    }
     </code></pre>
   </div>
 </section>
+<br />
+<br />
+<br />
+<br />
 

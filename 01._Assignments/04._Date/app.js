@@ -8,7 +8,7 @@ app.use(express.json());
 console.log(new Date());
 
 
-// Unix Epoch Time (Seconds since 1970 1st of January) 
+// Unix Epoch Time (milliseconds since 1970 1st of January) 
 console.log(Date.now());
 
 //Local time (in my case right now and here, CEST GMT+0100)

@@ -6,119 +6,180 @@
   <a href="#nodemon">Nodemon</a>
   <a href="#loops">Loops</a>
   <a href="#url">URL Anatomy</a>
-  <a href="#postreq">POST request</a>
   <a href="#bodyparse">Body parsing</a>
+  <a href="#postreq">POST request</a>
 </div>
 
 <section id="nodemon">
   <h2>Nodemon</h2>
   <div>
+    <p>
+      Nodemon is a tool that helps develop Node.js applications by automatically restarting the server when changes are detected
+      in the codebase. This can save time and effort during development by eliminating the need to manually stop and restart the
+      server after each code change.
+      <br />
+      <br />
+      Nodemon should only be used in development.
+    </p>
     <pre><code>
-      // To use Nodemon for automatic server restarts on file changes, install it globally or as a dev dependency:
-      // npm install -g nodemon
-      // OR
-      // npm install --save-dev nodemon
-      
-      // Then, you can start your server with Nodemon instead of node to automatically restart upon changes:
-      // nodemon index.js
+      //globally
+      npm install nodemon -g 
+      //locally
+      npm install nodemon --save-dev
+      </code></pre>
+    <p>To start a Node.js application with Nodemon, use the following command:</p>
+    <pre><code>
+        nodemon app.js
       </code></pre>
   </div>
 </section>
 <section id="loops">
   <h2>Loops</h2>
   <div>
+    <p>
+      Different loop methods.
+      <br />
+      for-loops, map, filter, sort, find, reduce
+    </p>
+    <h3>for loop</h3>
+    <p>only use this when finger counting is needed.</p>
     <pre><code>
-      // Example of loops in JavaScript
+    for (let i = 0; i < numbers.length; i++) {
+      console.log(numbers[i]);
+    }
+    </code></pre>
+    <h3>map</h3>
+    <p>
+      map creates a new array and applies a function to each element in the array.
+      <br />
+      In this case it multiplies each element by 2.
+    </p>
+    <pre><code>
+    const numbers = [1, 2, 3, 4, 5];
 
-      // For loop
-      for (let i = 0; i < 5; i++) {
-        console.log(`For loop iteration: ${i}`);
-      }
+    const doubledNumbers = numbers.map((number) => number * 2);
+    // Result: [2, 4, 6, 8, 10]
+    </code></pre>
+    <h3>filter</h3>
+    <p>filter creates a new array with all elements that pass the % 2 === 0.</p>
+    <pre><code>
+      const numbers = [1, 2, 3, 4, 5];
+
+      const evenNumbers = numbers.filter((number) => number % 2 === 0);
+      console.log(evenNumbers); 
+      // Result: [2, 4]
+    </code></pre>
+    <h3>sort</h3>
+    <p>
+      sort sorts the elements of an array in place and returns the sorted array.
+      <br />
+      respectively in increasing or decreasing order.
+    </p>
+    <pre><code>
+      const numbers = [5, 3, 4, 1, 2];
+
+      //increasing order
+      numbers.sort((a, b) => a - b); 
+      console.log(numbers); 
+      // Result: [1, 2, 3, 4, 5]
       
-      // While loop
-      let j = 0;
-      while (j < 5) {
-        console.log(`While loop iteration: ${j}`);
-        j++;
-      }
-      
+      //decreasing order
+      numbers.sort((a, b) => b - a); 
+      console.log(numbers); 
+      // Result: [5, 4, 3, 2, 1]
+    </code></pre>
+    <h3>find</h3>
+    <p>
+      find returns the first element in the array that pass the % 2 === 0 condition.
+      <br />
+      if no element passes, it returns undefined.
+    </p>
+    <pre><code>
+      const numbers = [1, 2, 3, 4, 5];
+
+      const firstEvenNumber = numbers.find((number) => number % 2 === 0);
+      console.log(firstEvenNumber); 
+      // Result: 2
+    </code></pre>
+    <h3>reduce</h3>
+    <p>
+      reduce applies a function to each element in an array and produces a single value.
+      <br />
+      in this case i sum all the elements in the array.
+    </p>
+    <pre><code>
+      const numbers = [1, 2, 3, 4, 5];
+
+      const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+      console.log(sum); 
+      // Result: 15
     </code></pre>
   </div>
 </section>
 <section id="url">
   <h2>Anatomy of an URL</h2>
   <div>
+    <p>
+      using this 'https://www.google.dk/search?q=test&' as an example to break down.
+      <br />
+      <br />
+      <strong>Protocol:</strong> `https` - specifies protocol used, and indicates 
+      that the connection is secure.
+      <br />
+      <strong>Domain:</strong> `www.google.dk` can be broken down into:
+      <br />
+      <strong>Subdomain:</strong> `www`
+      <br />
+      <strong>Domain:</strong> `google`
+      <br />
+      <strong>Top-level domain:</strong> `dk`
+      <br />
+      <strong>Path:</strong> `/search` 
+      <br />
+      <strong>Query string:</strong> `?q=test&` - contains key-value pairs separated by `&`. q is the key and test is the value.
+      <br />
+      <strong>Fragment:</strong> `#` - used to link to a specific section of a page. Not present in this example,
+      but would be indicated by a `#` followed by the section name.
+      <br />
+      I have done this at the top of this page to quickly the different sections of the page.
+    </p>
+  </div>
+</section>
+<section id="bodyparse">
+  <h2>Body parsing</h2>
+  <div>
+    <p>
+      Before we can begin working with the data sent in a POST request, we need to parse the body of the request.
+      This is built into express.
+    </p>
     <pre><code>
-      // Anatomy of a URL
-      // Example URL: https://www.example.com:80/path/to/resource?query=search#fragment
-      
-      // Protocol: https
-      // Hostname: www.example.com
-      // Port: 80
-      // Path: /path/to/resource
-      // Query string: ?query=search
-      // Fragment: #fragment
-      
-      // In a Node.js context, you can use the URL module to parse URLs:
-      const url = require('url');
-      const myUrl = new URL('https://www.example.com:80/path/to/resource?query=search#fragment');
-      
-      console.log(myUrl.hostname); // Outputs: www.example.com
-      
+      const express = require("express");
+      const app = express();
+
+      //necessary for POST, PUT, PATCH, DELETE
+      app.use(express.json());
     </code></pre>
   </div>
 </section>
 <section id="postreq">
   <h2>POST request</h2>
   <div>
+    <p>
+      Handling a POST request with express is simple. we use the above body-parser.
+      <br />
+      This example simply returns the body of the request to the client.
+    </p>
     <pre><code>
-      // Handling a POST request with Express
-
-      const express = require('express');
-      const bodyParser = require('body-parser');
-      
-      const app = express();
-      
-      // Middleware to parse request bodies
-      app.use(bodyParser.urlencoded({ extended: true }));
-      app.use(bodyParser.json());
-      
-      app.post('/submit-data', (req, res) => {
-        // Access POST data with req.body
+      app.post("/postman", (req, res) => {
         console.log(req.body);
-        res.send('POST request to the homepage');
+        res.send(req.body);
       });
-      
-      app.listen(3000, () => console.log('Server started on port 3000'));
-      
     </code></pre>
   </div>
 </section>
-<section id="bodyparse">
-  <h2>Body parsing</h2>
-  <div>
-    <pre><code>
-      // Example of body parsing in Express.js
-
-      const express = require('express');
-      const app = express();
-      
-      // Built-in middleware to handle urlencoded form data
-      app.use(express.urlencoded({ extended: true }));
-      
-      // Built-in middleware to handle JSON data
-      app.use(express.json());
-      
-      app.post('/api/data', (req, res) => {
-        // Accessing parsed body data
-        console.log(req.body);
-        res.json({ message: 'Data received successfully', receivedData: req.body });
-      });
-      
-      app.listen(3000, () => {
-        console.log('Server running on http://localhost:3000');
-      });
-      
-    </code></pre>
-  </div>
-</section>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

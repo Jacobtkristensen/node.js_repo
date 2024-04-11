@@ -9,49 +9,153 @@
   <a href="#deployment">Deployment</a>
 </div>
 <section id="crud">
-  <h2>Loops</h2>
+  <h2>CRUDable REST API</h2>
   <div>
+    <p>
+      below is a RESTful API design, and the conventions used in the URL structure.
+      <br />
+      Underneath that, is a code block showing the design implemented using express.
+    </p>
+    <img id="restapi-img" src="../../assets/images/REST_API.png" alt="REST API conventions" />
     <pre><code>
-      // Example of a simple function in JavaScript
-      function greet(name) {
-        return 'Hello, ' + name + '!';
+      app.get("/drinks", (req, res) => {
+        res.send({ data: drinks });
+      });
+      
+      app.get("/drinks/:id", (req, res) => {
+        const providedDrinkId = Number(req.params.id);
+        const foundDrink = drinks.find((drink) => drink.id === providedDrinkId);
+        if (!foundDrink) {
+          res.status(404).send({ error: "Drink not found" });
+        } else {
+          res.send({ data: foundDrink });
+        }
+      });
+      
+      app.post("/drinks", (req, res) => {
+        const requestBody = req.body;
+        const newDrinkId = drinks.reduce((maxId, drink) => Math.max(maxId, drink.id), 0) + 1;
+        const newDrink = {
+          id: newDrinkId,
+          name: requestBody.name,
+          ingredients: requestBody.ingredients,
+        };
+      
+        if (newDrink.name && newDrink.ingredients) {
+          drinks.push(newDrink);
+          res.status(201).send({ data: newDrink });
+        } else {
+          res.status(400).send({ error: "Both name and ingredient must be provided." });
+        }
+      });
+      
+      app.put("/drinks/:id", (req, res) => {
+        const providedDrinkId = Number(req.params.id);
+        const requestBody = req.body;
+        const foundIndex = drinks.findIndex((drink) => drink.id === providedDrinkId);
+      
+        if (foundIndex === -1) {
+          res.status(404).send({ error: "Drink not found." });
+        } else if (!requestBody.name || !requestBody.ingredients) {
+          res.status(400).send({ error: "Both name and ingredients must be provided." });
+        } else {
+          const updatedDrink = {
+            id: providedDrinkId,
+            name: requestBody.name,
+            ingredients: requestBody.ingredients,
+          };
+          drinks[foundIndex] = updatedDrink;
+          res.status(200).send({ data: updatedDrink });
+        }
+      });
+      
+      app.patch("/drinks/:id", (req, res) => {
+        const providedDrinkId = Number(req.params.id);
+        const foundDrinkIndex = drinks.findIndex((drink) => drink.id === providedDrinkId);
+        if (foundIndex === -1) {
+          res.status(404).send({ error: "Drink not found." });
+      } else {
+        drinks[foundDrinkIndex] = { ...drinks[foundDrinkIndex], ...req.body, id: providedDrinkId };
+      
+        res.send({});
       }
+      });
       
-      const greeting = greet('Alice');
-      console.log(greeting); // Output: 'Hello, Alice!'
+      app.delete("/drinks/:id", (req, res) => {
+        const providedDrinkId = Number(req.params.id);
       
+        if (isNaN(providedDrinkId)) {
+          res.status(400).send({ error: "Drink id must be a number." });
+        }
+        const foundDrinkIndex = drinks.findIndex((drink) => drink.id === providedDrinkId);
+        if (foundDrinkIndex === -1) {
+          res.status(404).send({ error: "Drink not found" });
+        }
+        res.status(200).send({ data: "Drink deleted." });
+        drinks.splice(foundDrinkIndex, 1);
+      });
     </code></pre>
   </div>
 </section>
 <section id="date">
-  <h2>Anatomy of an URL</h2>
+  <h2>Date</h2>
   <div>
+    <p>
+      Dates was a topic that was covered in the course. The following section 
+      will show code blocks and comments on how to work with dates in JavaScript.
+    <br />
+    <br />
+    This provides a way to get the current date & time (UTC time zone)
+    </p>
     <pre><code>
-      // Working with dates in JavaScript
-      const now = new Date();
-      console.log('Current date and time:', now.toString());
-      
-      // Formatting a date
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      console.log('Formatted date:', now.toLocaleDateString('en-US', options));
-      
-      // Calculate a future date
-      const futureDate = new Date(now);
-      futureDate.setDate(now.getDate() + 7); // 7 days from now
-      console.log('Future date:', futureDate.toLocaleDateString('en-US'));
-      
+    new Date();
     </code></pre>
-  </div>
+  </div>    
+  <p>
+    Unix Epoch Time (Milliseconds since January 1, 1970 00:00:00 UTC)
+    </p>
+    <pre><code>
+    Date.now();
+    </code></pre>
+  <p>
+    This provides a way to get the current date and time.(Local~ CEST / UTC+1)
+    </p>
+    <pre><code>
+    Date();
+    </code></pre>
+    <p>
+    This provides a way to get the current month in english.
+    </p>
+    <pre><code>
+    new Date().toLocaleString('en-us', { month: 'long' });
+
+    </code></pre>
+    <p>
+      Another way of getting the current month using an Array of months.
+      <br />
+      Edit array to get the month in the desired language.
+    </p>
+    <pre><code>
+      const monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"];
+
+      const month = new Date().getMonth();
+      console.log(monthNames[month]);
+    </code></pre>
 </section>
 <section id="fetch">
   <h2>POST request</h2>
   <div>
+    <p>
+      Fetch is a method used to make requests to a server. using HTTP requests,
+      we can e.g. get data from a server in the form of JSON.
+      Below is an example of how to use fetch to get data from a server.
+    </p>
     <pre><code>
-      // Using Fetch API to make HTTP requests
       fetch('https://jsonplaceholder.typicode.com/posts/1')
         .then(response => response.json())
-        .then(json => console.log(json))
-        .catch(err => console.error('Error fetching data:', err));
+        .then(data => console.log(data));
+        .catch(error => console.error('Error:', error));
       
     </code></pre>
   </div>
@@ -59,16 +163,44 @@
 <section id="deployment">
   <h2>Deployment</h2>
   <div>
+    <p>
+      In the course, we learned how to deploy our projects to a vercel server.
+      <br />
+      the steps to deploy a porject to vercel is quite simple.
+      <br />
+      <br />
+      1. sign up for a vercel account.(or login via google)
+      <br />
+      2. install vercel. (npm install -g vercel)
+      <br />
+      3. import your project to vercel. (import via github)
+      <br />
+      4. deploy your project.
+      <br />
+      <br />
+      Below is an example of a vercel.json file, which is necessary for deploying a project to vercel.
+    </p>
     <pre><code>
-      // To deploy a Node.js app to Heroku, follow these steps:
-      1. Create a Heroku account and install the Heroku CLI.
-      2. Navigate to your project directory in the terminal.
-      3. Initialize a git repository if you haven't already by running 'git init'.
-      4. Create a Heroku app by running 'heroku create'.
-      5. Add a 'start' script in your package.json that defines how to start your app, e.g., "start": "node index.js".
-      6. Deploy your app by pushing your code to the Heroku remote using 'git push heroku master'.
-      7. Access your deployed app using the URL provided by Heroku.
-      
+      {
+        "version": 2,
+        "builds": [
+          {
+            "src": "app.js",
+            "use": "@vercel/node"
+          }
+        ],
+        "routes": [
+          {
+            "src": "/(.*)",
+            "dest": "app.js"
+          }
+        ]
+    }
     </code></pre>
   </div>
 </section>
+<br />
+<br />
+<br />
+<br />
+<br />

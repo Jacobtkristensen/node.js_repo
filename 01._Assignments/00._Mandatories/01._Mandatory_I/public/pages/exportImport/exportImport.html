@@ -14,62 +14,142 @@
 <section id="exportimport">
   <h2>Export/Import</h2>
   <div>
+    <p>
+      ES modules or ECMAScript modules, are the standard way to modularize code in JavaScript.
+      <br />
+      ES modules allow us to export and import things from one module to another.
+      It increases the reusability of code. 
+      <br />
+      It is imperative to note, that it requires the use of type="module" in the script tag in the HTML file
+      for applications running in the browser.
+      <br />
+      For Node.js, it's your package.json file that needs tweaking.
+      <br />
+      Below is an example of a package.json file with the "type": "module".
+    </p>
     <pre><code>
-      git init
+      {
+        "type": "module",
+        "dependencies": {
+          "express": "^4.19.1",
+          "nodemon": "^3.1.0"
+        }
+      }
       </code></pre>
   </div>
 </section>
 <section id="typemodule">
   <h2>Type module vs. commonjs</h2>
   <div>
+    <p>
+      CommonJS and ECMAScript modules (ES6) are two different module systems in Node.js.
+      <br />
+      <br />
+      CommonJS is the native module system for Node.js, and is what we worked with in the beginning of this semester.
+      <br />
+      Its syntax for importing  modules is:
+    </p>
+      <pre><code>
+        const express = require('express');
+      </code></pre>
+    <p> 
+      To use ES6 modules, you need to set "type": "module" in your package.json file.
+      <br />
+      ES6 modules use the following syntax, among others, for importing modules:
+    </p>
     <pre><code>
-      // Example of data types in JavaScript
-      let string = 'This is a string';
-      let number = 42;
-      let boolean = true;
-      let nullValue = null;
-      let undefinedValue;
-      let object = {name: 'John', age: 30};
+      import express from "express";
+      import { readPage, renderPage } from "./templatingEngine.js";
+      import * as name from "module-name";
     </code></pre>
   </div>
 </section>
 <section id="static">
   <h2>Static in Node.js</h2>
   <div>
+    <p>
+      Serving static files in Node.js can be done using the express.static middleware.
+      <br />
+      The express.static middleware is a built-in function in express.
+      <br />
+      The result of the code block below, is that express will serve static files from the directory given.
+      (usually a folder named "public")
+      <br />
+      this also means that only files in the public folder can be accessed by the client.
+    </p>
     <pre><code>
-      // Example of type coercion in JavaScript
-      let result = '3' + 2; // '32'
-      let result2 = '3' - 2; // 1
+      app.use(express.static("public"));
     </code></pre>
   </div>
 </section>
 <section id="frontback">
   <h2>Backend vs Frontend fetching</h2>
   <div>
-    <pre><code>
-      // Example of a simple Node.js server
-      const http = require('http');
-      const server = http.createServer((req, res) => {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/plain');
-        res.end('Hello World');
-      });
+    
+      <p>
+        When it comes to fetching data, there are pros and cons to both backend and frontend approaches.
+      </p>
+      <h4 class="frontback-h4">Backend fetching</h4>
+            <ul>
+        <li>Pros:</li>
+        <br />
+        <ul class="proscons">
+          <li>Backend fetching allows you to keep sensitive data and logic secure on the server.</li>
+          <li>You have more control over the data flow and can implement complex business logic.</li>
+          <li>possible to Optimize data retrieval by caching and handling server-side rendering.</li>
+        </ul>
+        <br />
+        <li>Cons:</li>
+        <ul class="proscons">
+          <li>Can introduce additional latency as the client needs to make requests to the server.</li>
+          <li>Requires setting up server-side endpoints and handling authentication.</li>
+          <li>Load on the server can get high, potentially affecting scalability.</li>
+        </ul>
+      </ul>
+      <h4 class="frontback-h4">Frontend fetching</h4>
       
-      server.listen(3000, '127.0.0.1', () => {
-        console.log('Server running at http://127.0.0.1:3000/');
-      });
-    </code></pre>
+      <ul class="proscons">
+        <li>Pros:</li>
+        <ul class="proscons">
+          <li>Can reduce latency by fetching without the server as middle link</li>
+          <li>Frontend fetching enables a decoupled architecture where the frontend and backend can be developed independently.</li>
+        </ul>
+        <br />
+        <li>Cons:</li>
+        <ul class="proscons">
+          <li>Security: Frontend fetching exposes data and logic to the client-side if not taken care of.</li>
+          <li>Fetching large amounts of data on the frontend can impact load times and consume more client-side resources.</li>
+        </ul>
+      </ul>
+    
   </div>
 </section>
 <section id="structure">
   <h2>Structuring frontend</h2>
   <div>
-    <pre><code>
-      // Example REST API call using fetch
-      fetch('https://api.example.com/data')
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
-    </code></pre>
+    <p>
+      In regards of structuring our HTML, 
+      this is the folder structure we have ended up with.
+    </p>
+    <img id="structure-img" src="../../assets/images/structure-html.png" alt="picture of html structure using express">
+    <p>
+      With footer and header divided into separate files, and the main content in the pages folder,
+      we have a clean and organized structure.
+      using a more modular approach, we can easily add new pages and reuse components.
+      <br />
+      <br />
+      I went a step further than what we've been taught,
+      and decided to store all my external links in a separate file.
+      This way, I can easily update all my links in one place.
+      <img id="external-links-img" src="../../assets/images/external-links.png" alt="picture of external links in a separate file">
+      <img id="external-links-img2" src="../../assets/images/external-links2.png"  alt="picture of importing external links">
+    </p>
   </div>
 </section>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

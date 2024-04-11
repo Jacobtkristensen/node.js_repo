@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 console.log()
-// __dirname giver aboslute path til working directory
+// __dirname giver absolute path til working directory
 app.get("/", (req, res) => {
     res.sendFile(__dirname +"/public/homepage/homepage.html");
 });

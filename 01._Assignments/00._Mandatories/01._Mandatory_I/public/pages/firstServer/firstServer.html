@@ -3,128 +3,249 @@
 </div>
 
 <div id="top" class="topic-list">
-  <a href="#scoping">Scoping</a>
   <a href="#function">Functions</a>
+  <a href="#scoping">Scoping</a>
   <a href="#callbacks">Callbacks</a>
   <a href="#package">Package.json</a>
   <a href="#modules">Modules</a>
   <a href="#express">Express</a>
   <a href="#get">GET requests</a>
 </div>
-
-<section id="scoping">
-  <h2>Scoping</h2>
-  <div>
-    <pre><code>
-    // Example of block scoping with let
-    if (true) {
-    let scopedVar = 'I am scoped to this block';
-    console.log(scopedVar); // Output: 'I am scoped to this block'
-    }
-    // console.log(scopedVar); // Uncaught ReferenceError: scopedVar is not defined
-
-      </code></pre>
-  </div>
-</section>
 <section id="function">
   <h2>Functions</h2>
   <div>
+    <p>
+      A function consists of the keyword <code> function</code>, follow by its name
+      <code>greet</code>, parantheses <code> ()</code>, which might contain a parameter,
+       in this case <code> name</code>, and a set of curly braces <code> {}</code> that
+       contain the function's block of code.
+      <br />
+       The function can be called by its name followed by parantheses, and parameter if applicable
+        <code> greet('Bob')</code>. 
+      <br />
+      a function declared this way is hoisted, meaning that it can be called before 
+      it is declared in the code.
+    </p>
     <pre><code>
-      // Example of a simple function in JavaScript
-      function greet(name) {
-        return 'Hello, ' + name + '!';
-      }
-      
-      const greeting = greet('Alice');
-      console.log(greeting); // Output: 'Hello, Alice!'
-      
+    greet('Bob');
+    // Result: 'Hello, Bob!'
+
+    function greet(name) {
+      console.log('Hello, ' + name);
+    }       
     </code></pre>
+    <p>
+      A function can also be assigned to a variable. 
+    </p>
+    <pre><code>
+    function greet(name) {
+      return 'Hello, ' + name;
+    }
+
+    const greeting = greet('Bob');
+    console.log(greeting);
+    // Result: 'Hello, Bob'     
+    </code></pre>
+    <p>
+      An arrow function is a more concise way of writing a function. it also 
+      does not need the <code> return</code> keyword if the function is a single line. 
+    </p>
+    <pre><code>
+    const greet = (name) => 'Hello, ' + name;   
+    </code></pre>
+  </div>
+
+  </div>
+</section>
+<section id="scoping">
+  <h2>Scoping</h2>
+  <h4>const/let</h4>
+  <div>
+    <p>
+      <code>const</code> and <code>let</code> are block-scoped variables, 
+      meaning that they are only accessible within the block they are declared in.
+    <br /> 
+    <code>var</code> on the other hand pollutes the global scope, 
+    and can be accessed outside of the block it is declared in.
+    <br />
+    ALWAYS USE CONST, unless you know that the variable will be reassigned, then use LET.
+    </p>
+    <pre><code>
+    var someValue = true;
+    {
+      var someValue = false;
+    }
+    console.log(someValue); //false
+    //var pollutes scope
+
+     
+    let someValue2 = true;
+    {
+      let someValue2 = false;
+    }
+    console.log(someValue2); //true
+    </code></pre>    
+    <p>
+      <code>const</code> is immutable, meaning that it cannot be reassigned.
+      <br />
+      practicing immutability is good practice, as it makes the code less prone to bugs.
+    </p>
+    <pre><code>
+    const someValue = 10;
+    someValue = 20;
+    //TypeError: Assignment to constant variable.
+
+    const someObject = {name: 'Bob'};
+    someObject.name = 'Alice';
+    console.log(someObject); 
+    // {name: 'Alice'}
+    // the object itself is not immutable, only the reference to it.
+  </code></pre>
   </div>
 </section>
 <section id="callbacks">
   <h2>Callbacks</h2>
   <div>
+    <p>
+      callback functions are functions that are passed as arguments to another function.
+      <br />
+      the callback function is called after the parent function has completed its task.
+    </p>
     <pre><code>
-      // Example of a callback function in JavaScript
-      function processData(callback) {
-        // Simulate data fetching
-        const data = 'fetched data';
-        callback(data);
+      function genericActionPerformer(name, genericAction) {
+        return genericAction(name);
       }
-      
-      processData(function(data) {
-        console.log('Data received:', data);
-      });
-      
+
+      const runningArrowFunction = (name) => `${name} is running`;
+
+      function runningFunction(name) {
+        return `${name} is running`;
+      }
+
+      console.log(genericActionPerformer('Bob', runningArrowFunction));
+      console.log(genericActionPerformer('Bob', runningFunction));
+      //Result: 'Bob is running'
+    </code></pre>
+    <p>
+      callback function can also be used directly in the parent function parameter.
+    </p>
+    <pre><code>
+      function genericActionPerformer(name, genericAction) {
+        return genericAction(name);
+      }
+
+      console.log(genericActionPerformer('Bob', (name) => `${name} is running`));
+      //Result: 'Bob is running'
     </code></pre>
   </div>
 </section>
 <section id="package">
   <h2>Package.json</h2>
+  <p>
+    a package.json file contains metadata about the project. 
+    <br />
+    below is an example of a package.json file with dependencies and the ESM module syntax.
+    <br /> 
+    it also contains dependencies, which are packages that the project depends on to run. 
+    express is used to create a server, and nodemon is used to automatically restart the server,
+     when changes are made. 
+     <br />
+     Nodemon should only be used in development.
+     <br />
+     This file can be configured by hand.  
+      to install the dependencies written inside, run <code>npm install</code> in the terminal
+      after said file has been created.
+  </p>
   <div>
     <pre><code>
       {
-        "name": "my-first-node-app",
-        "version": "1.0.0",
-        "description": "My first Node.js app",
-        "main": "index.js",
-        "scripts": {
-          "start": "node index.js"
-        },
+        "type": "module",
         "dependencies": {
-          "express": "^4.17.1"
+          "express": "^4.19.1",
+          "nodemon": "^3.1.0"
         }
       }
-      
+    </code></pre>
+    <p>
+    it can also be added automatically. 
+    (except for the type: module line, which must be added manually)
+    <br />
+    <br />
+    entered in the terminal in the project folder.
+  </p>
+  <div>
+    <pre><code>
+      npm install express 
+
+      npm install nodemon
     </code></pre>
   </div>
 </section>
 <section id="modules">
   <h2>Modules</h2>
   <div>
-    <pre><code>
-      // Creating a module (myModule.js)
-      module.exports = {
-        greet: function(name) {
-          console.log('Hello, ' + name + '!');
-        }
-      };
-      
-      // Importing a module (app.js)
-      const myModule = require('./myModule');
-      myModule.greet('Alice');
-      
-    </code></pre>
+  <p>
+    node_modules is a folder that contains all the dependencies that the project uses.
+    <br />
+    It's an essential part of npm(Node Package Manager). when you install e.g. express, 
+    it will be added to the node_modules folder.
+    <br />
+    <br />
+    The folder can be accessed, and you'd be to see the code that the package is built on.
+
+  </p>
   </div>
 </section>
 <section id="express">
   <h2>Express</h2>
   <div>
+    <h4>Setting it up</h4>
+    <p>
+    </p>
+    <pre><code>
+      npm install express
+    </code></pre>
+    <p>Access the app.js file generated by the above command, and add the following code.</p>
+    </p>
     <pre><code>
       // Setting up a simple Express server
       const express = require('express');
       const app = express();
       
       app.get('/', (req, res) => {
-        res.send('Hello World with Express!');
+        res.send('Hello Anders with Express!');
       });
       
-      app.listen(3000, () => {
+      app.listen(8080, () => {
         console.log('Server is running on http://localhost:3000');
       });
-      
     </code></pre>
+    <p>
+      The server can be started by running <code>node app.js</code> in the terminal.
+      <br />
+      (or <code>nodemon app.js</code> if nodemon is installed)
+      <br />
+      The server can be accessed by going to <code>localhost:8080</code> in the browser.
+    </p>
   </div>
 </section>
 <section id="get">
   <h2>GET requests</h2>
   <div>
+    <p>
+      using the above example, it creates a route that listens for a GET request on the root path.
+      <br />
+      accessing localhost:8080 in the browser will return the string 'Hello Anders with Express!'.
+    </p>
     <pre><code>
-      // Handling GET requests with Express
-      app.get('/api/data', (req, res) => {
-        res.json({message: 'This is a response to a GET request'});
+      app.get('/', (req, res) => {
+        res.send('Hello Anders with Express!');
       });
-      
     </code></pre>
   </div>
 </section>
+<br />
+<br />
+<br />
+<br />
+<br />

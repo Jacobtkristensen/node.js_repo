@@ -37,15 +37,6 @@ app.get("/drinks/:id", (req, res) => {
   }
 });
 
-
-// app.post("/drinks"), (req, res) => {
-//   const newDrink = req.body;
-//   newDrink.id = ++nextId;
-//   drinks.push(newDrink);
-//   res.send({data: newDrink});
-// }
-
-
 app.post("/drinks", (req, res) => {
   const requestBody = req.body;
   const newDrinkId = drinks.reduce((maxId, drink) => Math.max(maxId, drink.id), 0) + 1;
