@@ -5,7 +5,7 @@ const resend = new Resend('re_guxUZsNk_4zneTvgfPNhnxUQaVGCyCjAJ');
 
 (async function() {
   const { data, error } = await resend.emails.send({
-    from: 'onboarding@resend.dev',
+    from: 'fuckyou@jacobtkristensen.dk',
     to: 'jacobtkristensen@gmail.com',
     subject: 'Det virker sgu',
     html: '<!DOCTYPE html><html><head><title>Celebration Email</title></head><body><div style="font-family: Arial, sans-serif; color: #333; background-color: #f9f9f9;'
