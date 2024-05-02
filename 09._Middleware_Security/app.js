@@ -19,7 +19,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
-}))
+}));
 
 
 // function ipLogger(req, res, next){
