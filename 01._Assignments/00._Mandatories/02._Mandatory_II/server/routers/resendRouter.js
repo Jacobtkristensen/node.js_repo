@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import { sendEmail }  from '../util/resend.js';
+import { requireAuth } from '../util/authMiddleware.js';
 
 const router = Router();
-
-router.post('/api/resend', async (req, res) => {
+//isnt used right now
+router.post('/api/resend', requireAuth, async (req, res) => {
     const { email } = req.body;
-    const result = await sendEmail(email);
-    res.send({data: "Email sent with ID: " + result});
+    await sendEmail(email);
+    res.send({ data: "Email sent to: " + email});
 });
 
 export default router;

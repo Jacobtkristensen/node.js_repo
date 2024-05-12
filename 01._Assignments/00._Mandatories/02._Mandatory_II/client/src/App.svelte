@@ -1,26 +1,22 @@
 <script>
-
+  import { Router, Link, Route } from "svelte-navigator";
+  import { toast, Toaster } from "svelte-french-toast";
+  import Home from "./pages/Home/Home.svelte";
+  import Login from "./pages/Login/Login.svelte";
+  import Signup from "./pages/Signup/Signup.svelte";
+  import User from "./pages/User/User.svelte";
+  import PrivateRoute from "./util/PrivateRoute.svelte";
+  import Navbar from "./pages/components/Navbar.svelte";
+  import Confetti from "svelte-confetti";
 </script>
 
-<main>
- 
-  <h1>Vite + Svelte</h1>
 
-  <div class="card">
-  
-  </div>
+  <Navbar />
 
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
+  <main>
 
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
-</main>
+    </main>
 
-<style>
-  .read-the-docs {
-    color: #888;
-  }
-</style>
+
+ <style>
+ </style>
